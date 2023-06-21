@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "cy8QMSUoERmQubQpV9iAGA0LbyiP0gd+Ow9+5NUk3VKqOOua2nWQGubaXDdHAgkJOACNl6fSImYeKgBOF2mfvA==",
+  "success": true,
+  "projectFilePath": "/home/pickle/RiderProjects/Proyect-mvc/Proyect-mvc.csproj",
+  "expectedPackageFiles": [
+    "/home/pickle/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.3/microsoft.aspnetcore.app.ref.7.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,218 @@
+@{
+    ViewData["Title"] = "AAAA";
+}
+
+    <!-- T I T U  L O -->
+    <div class="row" style="background-color: #dc3545;color: #fff3cd;">
+        <div class="col-md-1"></div>
+        <div class="col-md-1"><h1>Registro</h1></div>
+        
+    </div>
+    <br>
+    <div class="container" style="font-size: large;background-color: rgba(73,41,41,0.65); ">
+        <br>
+        <!-- N O M B R E  Y  A P E L L I D O -->
+        <div class="row">
+            <div class="col-md-1"><label>Nombre</label></div>
+            <div class="col-md-4"><input type="text" id="TextBoxNombre" style="width: 100%" ></div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-1"><label>Apellidos</label></div>
+            <div class="col-md-4"><input type="text" id="TextBoxApellidos" style="width: 100%"></div>
+        </div>
+        <br>
+        <!-- S E X O -->
+        <div class="row">
+            <div class="col-md-1 align-content-center">Sexo:</div>
+            <div class="col-md-2" style="text-align: center;">
+                <input type="radio" id="RadioButtonM" name="sexo"  class="btn-check">
+                <label class="btn btn-outline-danger rmb" for="RadioButtonM">Masculino</label>
+            </div>
+            <div class="col-md-2" style="text-align: center;">
+                <input type="radio" id="RadioButtonF" name="sexo"  class="btn-check">
+                <label class="btn btn-outline-danger rmb" for="RadioButtonF" >Femenino</label>
+            </div>
+        </div>
+        <br>
+
+        <!-- E M A I L -->
+        <div class="row">
+            <div class="col-md-1"><label>Email:</label></div>
+            <div class="col-md-4"><input type="email" id="TextBoxEmail" style="width: 100%"></div>
+        </div>
+        <br>
+
+        <!-- D I R E C C I O N -->
+        <div class="row">
+            <div class="col-md-1"><label>Dirección:</label></div>
+            <div class="col-md-4"><input type="text" id="TextBoxDireccion"style="width: 100%"></div>
+        </div>
+        <br>
+
+        <!-- C I U D A D  S E L E C T O R -->
+        <div class="row">
+            <div class="col-md-1"><label>Ciudad: </label> </div>
+            <div class="col-md-1">
+                <select id="DropDownListCiudad"  selected="selected" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown">
+
+                    <option>Lima</option>
+                    <option>Arequipa</option>
+                    <option>Puno</option>
+                    <option>Ayacucho</option>
+                </select>
+            </div>
+        </div>
+        <br>
+
+        <!-- R E Q U E R I M I E N T O -->
+        <div class="row">
+            <label>Requerimiento:</label>
+        </div>
+        <div class="row">
+            <div class="col-md-6" >
+                <textarea rows="4" cols="45" id="TextBoxRequerimiento" ></textarea>
+            </div>
+        </div>
+        <br>
+
+        <!-- B O T O N E S -->
+        <div class="row">
+            <div class="col-md-1" >
+                <button class="btn btn-danger" type="button" Id="Button2" onclick="return verificar();">Enviar</button>
+            </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-1" >
+                <button class="btn btn-danger" type="button" Id="Button1"  onclick="return limpiarContenido();">Limpiar</button>
+            </div>
+        </div>
+        <br>
+
+    </div>
+
+    <script type ="text/javascript" defer>
+         document.getElementById("DropDownListCiudad").value = 0;
+         const nombre = document.getElementById("TextBoxNombre");
+         const apellido = document.getElementById("TextBoxApellidos");
+         const M = document.getElementById("RadioButtonM") ;
+         const F = document.getElementById("RadioButtonF") ;
+         const email = document.getElementById("TextBoxEmail") ;
+         const direccion = document.getElementById("TextBoxDireccion") ;
+         const ciudad = document.getElementById("DropDownListCiudad") ;
+         const contenido = document.getElementById("TextBoxRequerimiento");
+         function limpiarContenido() {
+             let vacio = "";
+             nombre.value = vacio;
+             apellido.value = vacio;
+             M.checked = false;
+             F.checked = false;
+             email.value = vacio;
+             direccion.value = vacio;
+             ciudad.value = 0;
+             contenido.value = vacio;
+             return false;
+         }
+         
+         function letras(a){
+             let contador_de_char = 0;
+             let mayus,minus,space,ene;
+             for(let i = 0 ; i<a.value.length ; i++){
+             mayus = a.value.charCodeAt(i)>=65 && a.value.charCodeAt(i)<=90;
+             minus = a.value.charCodeAt(i)>=97 && a.value.charCodeAt(i)<=122;
+             space = a.value.charCodeAt(i)===32;
+             ene = a.value.charCodeAt(i)===241 || a.value.charCodeAt(i)===209;
+             if(minus||mayus||space||ene) {
+                 contador_de_char++;
+             }
+             }
+             if(contador_de_char===a.value.length){
+                 return true;
+             }else{return false;}
+         }
+         function direcciones(a){
+             let contador_de_char = 0;
+             let mayus,minus,space,ene,etc,numeros;
+             for(let i = 0 ; i<a.value.length ; i++){
+             mayus = a.value.charCodeAt(i)>=65 && a.value.charCodeAt(i)<=90;
+             minus = a.value.charCodeAt(i)>=97 && a.value.charCodeAt(i)<=122;
+             space = a.value.charCodeAt(i)===32;
+             ene = a.value.charCodeAt(i)===241 || a.value.charCodeAt(i)===209;
+             etc = a.value.charCodeAt(i)===46 || a.value.charCodeAt(i)===45;
+             numeros = a.value.charCodeAt(i)>=48 && a.value.charCodeAt(i)<=57;
+             if(minus||mayus||space||ene||etc||numeros) {
+                 contador_de_char++;
+             }
+             }
+             if(contador_de_char===a.value.length){
+                 return true;
+             }else{return false;}
+         }
+         function ver_mail(a) {
+             let arroba;
+             for (let i = 0; i < a.value.length; i++) {
+                 if (a.value.charCodeAt(i) === 64) {
+                     arroba = i;
+                     i = a.value.length;
+                 }
+             }
+             let comparar = a.value.substring(arroba, a.value.length)
+             if (comparar === "unsa.edu.pe") {
+                 return true;
+             } else {
+                 return false;
+             }
+         }
+         function is_empty() {
+             let vacio = "";
+             let a = nombre.value === vacio;
+             let b = apellido.value === vacio;
+             let c = M.checked === false && F.checked === false;
+             let e = email.value === vacio;
+             let f = direccion.value === vacio;
+             let g = ciudad.value === 0;
+             let h = contenido.value === vacio;
+             if(a){alert("nombre sin especificar");return true;}
+             if(b){alert("apellido sin especificar");return true;}
+             if(e){alert("email incorrecto, debe ser correo institucional");return true;}
+             if(f){alert("dirección sin especificar");return true;}
+             if(g){alert("ciudad sin especificar");return true;}
+             if(h){alert("requerimiento sin especificar");return true;}
+             
+             if(a || b || c || e || f || g || f || h){
+                 return true;
+             }else{
+                 return false;
+             }
+         }
+         
+         function verificar(){
+             let a = new Date().toLocaleDateString();
+             if(letras(apellido)&&direcciones(direccion)&&letras(nombre)&&ver_mail(email)&&!is_empty()&&!ciudad.value == 0){
+                 alert("se ha registrado correctamente el formulario en "+a);
+             }
+             if(!letras(nombre)){
+                 alert("nombre introducido incorrecto");
+                 return false;
+             }
+             if(!letras(apellido)){
+                 alert("apellido introducido incorrecto");
+                 return false;
+             }
+             if(M.checked === false && F.checked === false){
+                 alert("el sexo no ha sido especificado");
+                 return false;
+             }
+             if(!direcciones(direccion)){
+                 alert("direcci3on introducida incorrecta");
+                 return false;
+             }
+             if(ciudad.value == 0){
+                 alert("ciudad no seleccionada");
+                 return false;
+             }
+             if(!ver_mail(email)){
+                 alert("el email no es institucional o no se ha llenado correctamente");
+                 return false;
+             }
+         }
+     </script>
