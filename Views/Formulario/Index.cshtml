@@ -1,7 +1,9 @@
+
 @{
     ViewData["Title"] = "AAAA";
 }
-
+@model Formulario
+<form method="post" asp-action="Index">
     <!-- T I T U  L O -->
     <div class="row" style="background-color: #dc3545;color: #fff3cd;">
         <div class="col-md-1"></div>
@@ -14,12 +16,12 @@
         <!-- N O M B R E  Y  A P E L L I D O -->
         <div class="row">
             <div class="col-md-1"><label>Nombre</label></div>
-            <div class="col-md-4"><input type="text" id="TextBoxNombre" style="width: 100%" ></div>
+            <div class="col-md-4"><input type="text" id="TextBoxNombre" name="TextBoxNombre" style="width: 100%" ></div>
         </div>
         <br>
         <div class="row">
             <div class="col-md-1"><label>Apellidos</label></div>
-            <div class="col-md-4"><input type="text" id="TextBoxApellidos" style="width: 100%"></div>
+            <div class="col-md-4"><input type="text" id="TextBoxApellidos" name="TextBoxApellidos" style="width: 100%"></div>
         </div>
         <br>
         <!-- S E X O -->
@@ -46,7 +48,7 @@
         <!-- D I R E C C I O N -->
         <div class="row">
             <div class="col-md-1"><label>Dirección:</label></div>
-            <div class="col-md-4"><input type="text" id="TextBoxDireccion"style="width: 100%"></div>
+            <div class="col-md-4"><input type="text" id="TextBoxDireccion" name="TextBoxDireccion"style="width: 100%"></div>
         </div>
         <br>
 
@@ -56,10 +58,10 @@
             <div class="col-md-1">
                 <select id="DropDownListCiudad"  selected="selected" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown">
 
-                    <option>Lima</option>
-                    <option>Arequipa</option>
-                    <option>Puno</option>
-                    <option>Ayacucho</option>
+                    @for(int i = 0 ; i< @Model.Ciudad.Count;i++){
+                        <option>@Model.Ciudad[i]</option>
+                    }
+                    
                 </select>
             </div>
         </div>
@@ -71,15 +73,17 @@
         </div>
         <div class="row">
             <div class="col-md-6" >
-                <textarea rows="4" cols="45" id="TextBoxRequerimiento" ></textarea>
+                <textarea rows="4" cols="45" id="TextBoxRequerimiento" name="TextBoxRequerimiento" ></textarea>
             </div>
         </div>
         <br>
 
         <!-- B O T O N E S -->
         <div class="row">
+            <input type="submit" value="EnviarData" onclick="return verificar();" asp-action="Index" />
+
             <div class="col-md-1" >
-                <button class="btn btn-danger" type="button" Id="Button2" onclick="return verificar();">Enviar</button>
+                <button class="btn btn-danger" type="button" Id="Button2" onclick="return verificar();" >Enviar</button>
             </div>
             <div class="col-md-3"></div>
             <div class="col-md-1" >
@@ -89,6 +93,13 @@
         <br>
 
     </div>
+    
+    <p>Nombres: @Model.Nombres</p>
+    <p>Apellidos: @Model.Apellidos</p>
+    <p>Direccion: @Model.Direccion</p>
+    <p>Requerimiento: @Model.Requerimiento</p>
+
+
 
     <script type ="text/javascript" defer>
          document.getElementById("DropDownListCiudad").value = 0;
@@ -150,7 +161,7 @@
          function ver_mail(a) {
              let arroba;
              for (let i = 0; i < a.value.length; i++) {
-                 if (a.value.charCodeAt(i) === 64) {
+                 if (a.value.charCodeAt(i) === 117) {
                      arroba = i;
                      i = a.value.length;
                  }
@@ -216,3 +227,4 @@
              }
          }
      </script>
+</form>
