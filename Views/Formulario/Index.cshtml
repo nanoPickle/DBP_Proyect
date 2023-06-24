@@ -1,6 +1,5 @@
-
 @{
-    ViewData["Title"] = "AAAA";
+    ViewData["Title"] = "Formulario de requisitos";
 }
 @model Formulario
 <form method="post" asp-action="Index">
@@ -56,12 +55,10 @@
         <div class="row">
             <div class="col-md-1"><label>Ciudad: </label> </div>
             <div class="col-md-1">
-                <select id="DropDownListCiudad"  selected="selected" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown">
-
-                    @for(int i = 0 ; i< @Model.Ciudad.Count;i++){
-                        <option>@Model.Ciudad[i]</option>
+                <select id="DropDownListCiudad" name="DropDownListCiudad" class="btn btn-danger dropdown-toggle" asp-for="CiudadSeleccionada" data-bs-toggle="dropdown">
+                    @foreach(var option in @Model.Ciudad){
+                        <option value="@option">@option</option>
                     }
-                    
                 </select>
             </div>
         </div>
@@ -80,11 +77,10 @@
 
         <!-- B O T O N E S -->
         <div class="row">
-            <input type="submit" value="EnviarData" onclick="return verificar();" asp-action="Index" />
+            <input type="submit" value="EnviarData" onclick="return verificar();" asp-action="Procesame" />
 
             <div class="col-md-1" >
-                <button class="btn btn-danger" type="button" Id="Button2" onclick="return verificar();" >Enviar</button>
-            </div>
+                <button class="btn btn-danger" type="button" Id="Button2" onclick="return verificar();" >Enviar</button>    </div>
             <div class="col-md-3"></div>
             <div class="col-md-1" >
                 <button class="btn btn-danger" type="button" Id="Button1"  onclick="return limpiarContenido();">Limpiar</button>
@@ -93,16 +89,16 @@
         <br>
 
     </div>
-    
     <p>Nombres: @Model.Nombres</p>
     <p>Apellidos: @Model.Apellidos</p>
     <p>Direccion: @Model.Direccion</p>
     <p>Requerimiento: @Model.Requerimiento</p>
-
+    <p>Ciudad: @ViewBag.CiudadS</p>
+</form>
+  
 
 
     <script type ="text/javascript" defer>
-         document.getElementById("DropDownListCiudad").value = 0;
          const nombre = document.getElementById("TextBoxNombre");
          const apellido = document.getElementById("TextBoxApellidos");
          const M = document.getElementById("RadioButtonM") ;
@@ -119,7 +115,7 @@
              F.checked = false;
              email.value = vacio;
              direccion.value = vacio;
-             ciudad.value = 0;
+             ciudad.value = "Lima";
              contenido.value = vacio;
              return false;
          }
@@ -227,4 +223,4 @@
              }
          }
      </script>
-</form>
+
