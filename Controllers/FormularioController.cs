@@ -15,7 +15,8 @@ namespace Proyect_mvc.Controllers
                                         string TextBoxDireccion, 
                                         string TextBoxRequerimiento,
                                         string DropDownListCiudad,
-                                        string sexo
+                                        string sexo,
+                                        string TextBoxEmail
         ) {
             mi_formulario.Nombres = TextBoxNombre;
             mi_formulario.Apellidos = TextBoxApellidos;
@@ -23,6 +24,7 @@ namespace Proyect_mvc.Controllers
             mi_formulario.Requerimiento = TextBoxRequerimiento;
             mi_formulario.CiudadSeleccionada = DropDownListCiudad;
             mi_formulario.Sexo = sexo;
+            mi_formulario.Email = TextBoxEmail;
             return View("Index",mi_formulario);
         }
     }

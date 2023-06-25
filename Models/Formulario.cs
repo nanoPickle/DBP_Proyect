@@ -10,6 +10,7 @@ namespace Proyect_mvc.Models
         public string Requerimiento {get; set; } = "";
         public string CiudadSeleccionada { get; set; } = "Lima";
         public string Sexo { get; set; } = "";
+        public string Email { get; set; } = "";
         
         public Formulario(){
             var path = "Ciudades.txt";

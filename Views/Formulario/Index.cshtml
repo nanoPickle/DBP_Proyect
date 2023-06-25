@@ -40,7 +40,7 @@
         <!-- E M A I L -->
         <div class="row">
             <div class="col-md-1"><label>Email:</label></div>
-            <div class="col-md-4"><input type="email" id="TextBoxEmail" style="width: 100%"></div>
+            <div class="col-md-4"><input type="email" id="TextBoxEmail" name="TextBoxEmail" style="width: 100%"></div>
         </div>
         <br>
 
@@ -93,10 +93,11 @@
         <div onload="return limpiarContenido();">
             <p>Nombres: @Model.Nombres</p>
             <p>Apellidos: @Model.Apellidos</p>
-            <p>Direccion: @Model.Direccion</p>
-            <p>Requerimiento: @Model.Requerimiento</p>
-            <p>Ciudad: @Model.CiudadSeleccionada</p>
             <p>Sexo: @Model.Sexo</p>
+            <p>E-mail: @Model.Email</p>
+            <p>Direccion: @Model.Direccion</p>
+            <p>Ciudad: @Model.CiudadSeleccionada</p>
+            <p>Requerimiento: @Model.Requerimiento</p>
         </div>
     }
 
@@ -163,12 +164,12 @@
          function ver_mail(a) {
              let arroba;
              for (let i = 0; i < a.value.length; i++) {
-                 if (a.value.charCodeAt(i) === 117) {
+                 if (a.value.charCodeAt(i) === 64) {
                      arroba = i;
                      i = a.value.length;
                  }
              }
-             let comparar = a.value.substring(arroba, a.value.length)
+             let comparar = a.value.substring(arroba+1, a.value.length)
              if (comparar === "unsa.edu.pe") {
                  return true;
              } else {
