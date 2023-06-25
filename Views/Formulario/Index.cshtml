@@ -27,11 +27,11 @@
         <div class="row">
             <div class="col-md-1 align-content-center">Sexo:</div>
             <div class="col-md-2" style="text-align: center;">
-                <input type="radio" id="RadioButtonM" name="sexo"  class="btn-check">
+                <input type="radio" id="RadioButtonM" name="sexo" value="Masculino" class="btn-check">
                 <label class="btn btn-outline-danger rmb" for="RadioButtonM">Masculino</label>
             </div>
             <div class="col-md-2" style="text-align: center;">
-                <input type="radio" id="RadioButtonF" name="sexo"  class="btn-check">
+                <input type="radio" id="RadioButtonF" name="sexo"  value="Femenino"class="btn-check">
                 <label class="btn btn-outline-danger rmb" for="RadioButtonF" >Femenino</label>
             </div>
         </div>
@@ -77,10 +77,10 @@
 
         <!-- B O T O N E S -->
         <div class="row">
-            <input type="submit" value="EnviarData" onclick="return verificar();" asp-action="Procesame" />
 
             <div class="col-md-1" >
-                <button class="btn btn-danger" type="button" Id="Button2" onclick="return verificar();" >Enviar</button>    </div>
+                <button class="btn btn-danger" type="submit" value="EnviarData" Id="Button2" onclick="return verificar();" asp-action="Procesame" >Enviar</button>    
+            </div>
             <div class="col-md-3"></div>
             <div class="col-md-1" >
                 <button class="btn btn-danger" type="button" Id="Button1"  onclick="return limpiarContenido();">Limpiar</button>
@@ -89,11 +89,17 @@
         <br>
 
     </div>
-    <p>Nombres: @Model.Nombres</p>
-    <p>Apellidos: @Model.Apellidos</p>
-    <p>Direccion: @Model.Direccion</p>
-    <p>Requerimiento: @Model.Requerimiento</p>
-    <p>Ciudad: @ViewBag.CiudadS</p>
+    @if(@Model.Nombres!=""){
+        <div onload="return limpiarContenido();">
+            <p>Nombres: @Model.Nombres</p>
+            <p>Apellidos: @Model.Apellidos</p>
+            <p>Direccion: @Model.Direccion</p>
+            <p>Requerimiento: @Model.Requerimiento</p>
+            <p>Ciudad: @Model.CiudadSeleccionada</p>
+            <p>Sexo: @Model.Sexo</p>
+        </div>
+    }
+
 </form>
   
 
@@ -210,7 +216,7 @@
                  return false;
              }
              if(!direcciones(direccion)){
-                 alert("direcci3on introducida incorrecta");
+                 alert("dirección introducida incorrecta");
                  return false;
              }
              if(ciudad.value == 0){
@@ -221,6 +227,7 @@
                  alert("el email no es institucional o no se ha llenado correctamente");
                  return false;
              }
+             return true;
          }
      </script>
 

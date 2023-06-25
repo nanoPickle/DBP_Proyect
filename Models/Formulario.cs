@@ -9,9 +9,10 @@ namespace Proyect_mvc.Models
         public string Direccion {get; set; } = "";
         public string Requerimiento {get; set; } = "";
         public string CiudadSeleccionada { get; set; } = "Lima";
+        public string Sexo { get; set; } = "";
         
         public Formulario(){
-            var path = "/home/pickle/RiderProjects/Proyect-mvc/Models/Ciudades.txt";
+            var path = "Ciudades.txt";
             string contenido = System.IO.File.ReadAllText(path);
             string []ciudades = contenido.Split('\n');
             foreach(string line in ciudades)

@@ -14,13 +14,15 @@ namespace Proyect_mvc.Controllers
                                         string TextBoxApellidos, 
                                         string TextBoxDireccion, 
                                         string TextBoxRequerimiento,
-                                        string DropDownListCiudad
+                                        string DropDownListCiudad,
+                                        string sexo
         ) {
             mi_formulario.Nombres = TextBoxNombre;
             mi_formulario.Apellidos = TextBoxApellidos;
             mi_formulario.Direccion = TextBoxDireccion;
             mi_formulario.Requerimiento = TextBoxRequerimiento;
-            ViewBag.CiudadS = DropDownListCiudad;
+            mi_formulario.CiudadSeleccionada = DropDownListCiudad;
+            mi_formulario.Sexo = sexo;
             return View("Index",mi_formulario);
         }
     }
